@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+
+{% block title %}О нас{% endblock %}
+
+{% block hero_title %}О НАС{% endblock %}
+
+{% block content %}
+<style>
+    .about-block {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+    .about-block h2 {
+        color: #8b4513;
+        margin-bottom: 20px;
+    }
+    .advantage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    .advantage-item {
+        text-align: center;
+        padding: 20px;
+        background: #f8f5f0;
+        border-radius: 10px;
+    }
+    .advantage-item i {
+        font-size: 40px;
+        color: #8b4513;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="about-block">
+    <h2>🎵 ДОБРО ПОЖАЛОВАТЬ В «ВИНИЛОВУЮ ЛАВКУ»</h2>
+    <p>Мы — команда энтузиастов, которые любят музыку так же сильно, как и вы. Наш магазин открылся в 2023 году с простой целью: сделать качественный винил доступным для каждого.</p>
+    <p>Здесь вы найдёте как классические альбомы, так и новинки современных исполнителей — от рока и джаза до K-pop и инди.</p>
+</div>
+
+<div class="about-block">
+    <h2>✨ ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
+    
+    <div class="advantage-grid">
+        <div class="advantage-item">
+            <i class="fas fa-record-vinyl"></i>
+            <h3>3000+ пластинок</h3>
+            <p>Огромный выбор на любой вкус</p>
+        </div>
+        <div class="advantage-item">
+            <i class="fas fa-check-circle"></i>
+            <h3>Только оригиналы</h3>
+            <p>Гарантия подлинности</p>
+        </div>
+        <div class="advantage-item">
+            <i class="fas fa-shipping-fast"></i>
+            <h3>Быстрая доставка</h3>
+            <p>По Москве за 3 часа</p>
+        </div>
+        <div class="advantage-item">
+            <i class="fas fa-headset"></i>
+            <h3>Поддержка 24/7</h3>
+            <p>Поможем с выбором</p>
+        </div>
+    </div>
+</div>
+
+<div class="about-block">
+    <h2>📍 НАШ МАГАЗИН</h2>
+    <p><strong>Адрес:</strong> г. Москва, ул. Петропавловская, 10А</p>
+    <p><strong>Часы работы:</strong> Ежедневно с 10:00 до 20:00</p>
+    <p><strong>Телефон:</strong> +7 (934) 923-92-40</p>
+    <p><strong>Email:</strong> hello@vinilovalavka.ru</p>
+</div>
+
+<div class="about-block">
+    <h2>📱 МЫ В СОЦСЕТЯХ</h2>
+    <p>Подписывайтесь, чтобы узнавать о новинках и акциях первыми:</p>
+    <p>📷 Instagram: @vinilovalavka</p>
+    <p>📱 Telegram: @vinilovalavka</p>
+    <p>🎵 TikTok: @vinilovalavka</p>
+</div>
+{% endblock %}

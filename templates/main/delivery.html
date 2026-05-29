@@ -1,0 +1,102 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Доставка и оплата{% endblock %}
+
+{% block hero_title %}ДОСТАВКА И ОПЛАТА{% endblock %}
+
+{% block content %}
+<style>
+    .info-block {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+    .info-block h2 {
+        color: #8b4513;
+        margin-bottom: 20px;
+    }
+    .delivery-item {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .price {
+        color: #8b4513;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .free {
+        color: green;
+        font-weight: bold;
+    }
+</style>
+
+<div class="info-block">
+    <h2>🚚 СПОСОБЫ ДОСТАВКИ</h2>
+    
+    <div class="delivery-item">
+        <strong>🚀 Экспресс-доставка по Москве</strong><br>
+        Доставка в день заказа в течение 3 часов<br>
+        <span class="price">699 ₽</span>
+    </div>
+    
+    <div class="delivery-item">
+        <strong>📦 СДЭК по Москве</strong><br>
+        Доставка до ПВЗ или курьером, 2-3 дня<br>
+        <span class="price">300 ₽</span>
+    </div>
+    
+    <div class="delivery-item">
+        <strong>🇷🇺 СДЭК по России</strong><br>
+        Доставка до ПВЗ во все города, 3-7 дней<br>
+        <span class="price">390 ₽</span>
+    </div>
+    
+    <div class="delivery-item">
+        <strong>🏬 Самовывоз</strong><br>
+        Бесплатно. Москва, ул. Петропавловская, 10А<br>
+        <span class="price free">Бесплатно</span>
+    </div>
+    
+    <div class="delivery-item">
+        <strong>🎁 Бесплатная доставка</strong><br>
+        При заказе от <span class="price">12 000 ₽</span><br>
+        <span class="price free">Бесплатно</span>
+    </div>
+</div>
+
+<div class="info-block">
+    <h2>💳 СПОСОБЫ ОПЛАТЫ</h2>
+    
+    <div class="delivery-item">
+        <strong>💳 Онлайн картой на сайте</strong><br>
+        Visa, MasterCard, МИР. Мгновенное подтверждение.
+    </div>
+    
+    <div class="delivery-item">
+        <strong>📱 По QR-коду через СБП</strong><br>
+        Система быстрых платежей. Без комиссии.
+    </div>
+    
+    <div class="delivery-item">
+        <strong>💰 Наличными при самовывозе</strong><br>
+        Оплата в магазине при получении.
+    </div>
+    
+    <div class="delivery-item">
+        <strong>🏦 Банковский перевод</strong><br>
+        Для юридических лиц и ИП.
+    </div>
+    
+    <div class="delivery-item">
+        <strong>🤝 Оплата при получении</strong><br>
+        Курьеру или в ПВЗ СДЭК.
+    </div>
+</div>
+
+<div class="info-block">
+    <h2>📞 ПОМОЩЬ</h2>
+    <p>По вопросам доставки и оплаты звоните: <strong>+7 (934) 923-92-40</strong></p>
+    <p>Или пишите: <strong>hello@vinilovalavka.ru</strong></p>
+</div>
+{% endblock %}

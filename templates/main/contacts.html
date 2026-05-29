@@ -1,0 +1,91 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block hero_title %}КОНТАКТЫ{% endblock %}
+
+{% block content %}
+<style>
+    .contacts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    .contact-card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .contact-card i {
+        font-size: 48px;
+        color: #8b4513;
+        margin-bottom: 15px;
+    }
+    .contact-card h3 {
+        margin-bottom: 15px;
+    }
+    .map-placeholder {
+        background: #ddd;
+        height: 300px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+    }
+</style>
+
+<div class="contacts-grid">
+    <div class="contact-card">
+        <i class="fas fa-phone"></i>
+        <h3>ТЕЛЕФОН</h3>
+        <p>+7 (934) 923-92-40</p>
+        <p>Ежедневно 10:00–20:00</p>
+    </div>
+    
+    <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h3>EMAIL</h3>
+        <p>hello@vinilovalavka.ru</p>
+        <p>Ответ в течение часа</p>
+    </div>
+    
+    <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>АДРЕС</h3>
+        <p>г. Москва</p>
+        <p>ул. Петропавловская, 10А</p>
+    </div>
+    
+    <div class="contact-card">
+        <i class="fab fa-instagram"></i>
+        <h3>INSTAGRAM</h3>
+        <p>@vinilovalavka</p>
+        <p>Новинки и акции</p>
+    </div>
+    
+    <div class="contact-card">
+        <i class="fab fa-telegram"></i>
+        <h3>TELEGRAM</h3>
+        <p>@vinilovalavka</p>
+        <p>Быстрая связь</p>
+    </div>
+    
+    <div class="contact-card">
+        <i class="fab fa-whatsapp"></i>
+        <h3>WHATSAPP</h3>
+        <p>+7 (934) 923-92-40</p>
+        <p>Консультации онлайн</p>
+    </div>
+</div>
+
+<div class="contact-card">
+    <h3>📍 КАК ПРОЕХАТЬ</h3>
+    <p>Метро «Петропавловская», выход к ТЦ. Наш магазин находится на первом этаже жилого комплекса.</p>
+    <div class="map-placeholder">
+        🗺️ [Здесь будет карта с адресом]
+    </div>
+</div>
+{% endblock %}

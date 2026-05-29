@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block hero_title %}РЕГИСТРАЦИЯ{% endblock %}
+
+{% block content %}
+<style>
+    .auth-form {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+    }
+    .btn {
+        background-color: #8b4513;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+    .btn:hover {
+        background-color: #6b3410;
+    }
+</style>
+
+<div class="auth-form">
+    <h2 style="text-align:center; margin-bottom:20px;">Создать аккаунт</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <small style="color:red">{{ field.errors }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn">Зарегистрироваться</button>
+    </form>
+    <p style="text-align:center; margin-top:20px;">
+        Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a>
+    </p>
+</div>
+{% endblock %}

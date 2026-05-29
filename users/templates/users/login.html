@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block hero_title %}ВХОД{% endblock %}
+
+{% block content %}
+<style>
+    .auth-form {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+    }
+    .btn {
+        background-color: #8b4513;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+    .btn:hover {
+        background-color: #6b3410;
+    }
+</style>
+
+<div class="auth-form">
+    <h2 style="text-align:center; margin-bottom:20px;">Вход в аккаунт</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Имя пользователя</label>
+            <input type="text" name="username" required>
+        </div>
+        <div class="form-group">
+            <label>Пароль</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Войти</button>
+    </form>
+    <p style="text-align:center; margin-top:20px;">
+        Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a>
+    </p>
+</div>
+{% endblock %}

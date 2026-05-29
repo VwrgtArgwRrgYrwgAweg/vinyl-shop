@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Виниловая лавка{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f8f5f0; color: #2c2c2c; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background-color: #1a1a1a; color: #fff; padding: 20px 0; border-bottom: 3px solid #8b4513; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: 700; letter-spacing: 2px; color: #d4af37; text-decoration: none; }
+        nav ul { display: flex; list-style: none; gap: 30px; flex-wrap: wrap; align-items: center; }
+        nav a { color: #fff; text-decoration: none; font-size: 16px; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #d4af37; }
+        .header-icons { display: flex; align-items: center; gap: 20px; }
+        .search-box { position: relative; }
+        .search-box input { padding: 8px 35px 8px 15px; border-radius: 20px; border: none; background-color: #333; color: #fff; width: 200px; }
+        .search-box i { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #aaa; cursor: pointer; }
+        .cart-icon { position: relative; font-size: 22px; color: #fff; text-decoration: none; }
+        .cart-count { position: absolute; top: -8px; right: -8px; background-color: #d4af37; color: #1a1a1a; font-size: 12px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .hero { text-align: center; padding: 40px 0; border-top: 1px solid #333; }
+        .hero h1 { font-size: 36px; margin-bottom: 15px; color: #d4af37; }
+        footer { background-color: #1a1a1a; color: #ccc; padding: 30px 0; text-align: center; border-top: 3px solid #8b4513; margin-top: 60px; }
+        .footer-text { font-size: 14px; margin-top: 20px; }
+        @media (max-width: 768px) { .header-top { flex-direction: column; } .hero h1 { font-size: 28px; } nav ul { justify-content: center; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="/" class="logo">ВИНИЛОВАЯ ЛАВКА</a>
+                <nav>
+                    <ul>
+    <li><a href="/delivery/">ДОСТАВКА И ОПЛАТА</a></li>
+    <li><a href="/about/">О НАС</a></li>
+    <li><a href="/contacts/">КОНТАКТЫ</a></li>
+    {% if user.is_superuser %}
+        <li><a href="/admin/">АДМИНКА</a></li>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+        <li>
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" style="background: none; border: none; color: #fff; font-size: 16px; font-weight: 500; cursor: pointer;">ВЫЙТИ</button>
+            </form>
+        </li>
+    {% else %}
+        <li><a href="{% url 'login' %}">ВОЙТИ</a></li>
+        <li><a href="{% url 'register' %}">РЕГИСТРАЦИЯ</a></li>
+    {% endif %}
+</ul>
+                </nav>
+                <div class="header-icons">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="поиск">
+                        <i class="fas fa-search" id="searchBtn"></i>
+                    </div>
+                    <a href="{% url 'cart_detail' %}" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">{{ cart_count }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero">
+                <h1>{% block hero_title %}НАСТОЯЩИЙ ЗВУК{% endblock %}</h1>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <div class="container">
+            <div class="logo">ВИНИЛОВАЯ ЛАВКА</div>
+            <p class="footer-text">© 2025 Виниловая лавка. Все права защищены.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('searchBtn')?.addEventListener('click', function() {
+            let q = document.getElementById('searchInput').value;
+            if (q) window.location.href = '/?search=' + encodeURIComponent(q);
+        });
+        document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                let q = this.value;
+                if (q) window.location.href = '/?search=' + encodeURIComponent(q);
+            }
+        });
+    </script>
+</body>
+</html>
