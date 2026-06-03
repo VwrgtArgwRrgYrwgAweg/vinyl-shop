@@ -119,12 +119,17 @@
     <div class="products-grid">
         {% for product in products %}
         <div class="product-card">
-            <div class="product-artist">{{ product.artist }}</div>
-            <div class="product-title">{{ product.title }}</div>
-            <div class="product-year">{{ product.year }}</div>
-            <div class="product-price">{{ product.price }} ₽</div>
-            <a href="{% url 'cart_add' product.id %}" class="btn-buy">В корзину</a>
-        </div>
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">
+    {% else %}
+        <div class="product-image">🎵</div>
+    {% endif %}
+    <div class="product-artist">{{ product.artist }}</div>
+    <div class="product-title">{{ product.title }}</div>
+    <div class="product-year">{{ product.year }}</div>
+    <div class="product-price">{{ product.price }} ₽</div>
+    <a href="{% url 'cart_add' product.id %}" class="btn-buy">В корзину</a>
+</div>
         {% endfor %}
     </div>
 {% endif %}
