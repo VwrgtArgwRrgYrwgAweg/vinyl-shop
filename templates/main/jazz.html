@@ -1,10 +1,66 @@
 {% extends 'main/base.html' %}
 
-{% block title %}Джаз{% endblock %}
+{% block title %}Джаз - Виниловая лавка{% endblock %}
 
 {% block hero_title %}ДЖАЗ{% endblock %}
 
 {% block content %}
-<h1 style="text-align:center; padding:50px;">Тестовая страница Джаз</h1>
-<p style="text-align:center;">Количество товаров: {{ products|length }}</p>
+<style>
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+    }
+    .product-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+    .price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #8b4513;
+        margin: 10px 0;
+    }
+    .btn-buy {
+        background: #8b4513;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-buy:hover {
+        background: #6b3410;
+    }
+</style>
+
+{% if products %}
+<div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.get_image_url }}" alt="{{ product.title }}">
+        <h3>{{ product.artist }} - {{ product.title }}</h3>
+        <p>{{ product.year }}</p>
+        <div class="price">{{ product.price }} ₽</div>
+        <a href="{% url 'cart_add' product.id %}" class="btn-buy">В корзину</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="no-results">
+    <h3>😕 В разделе "Джаз" пока нет товаров</h3>
+    <p>Добавьте товары с жанром "Джаз" в админке</p>
+    <a href="/" class="btn-buy">На главную</a>
+</div>
+{% endif %}
 {% endblock %}
