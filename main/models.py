@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Product(models.Model):
-    # СПИСОК ЖАНРОВ - ДОБАВИТЬ ЭТО ПЕРЕД ПОЛЯМИ!
+    # Жанры
     GENRE_CHOICES = [
         ('pop', 'Поп'),
         ('jazz', 'Джаз'),
