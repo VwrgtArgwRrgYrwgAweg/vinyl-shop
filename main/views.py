@@ -20,7 +20,39 @@ def home(request):
         'products': products,
         'search_query': search_query
     })
+def pop_products(request):
+    """Страница с поп-музыкой"""
+    products = Product.objects.filter(genre='pop')
+    search_query = request.GET.get('search', '')
+    
+    if search_query:
+        products = products.filter(
+            models.Q(title__icontains=search_query) |
+            models.Q(artist__icontains=search_query)
+        )
+    
+    return render(request, 'main/pop.html', {
+        'products': products,
+        'search_query': search_query,
+        'genre': 'Поп'
+    })
 
+def jazz_products(request):
+    """Страница с джазом"""
+    products = Product.objects.filter(genre='jazz')
+    search_query = request.GET.get('search', '')
+    
+    if search_query:
+        products = products.filter(
+            models.Q(title__icontains=search_query) |
+            models.Q(artist__icontains=search_query)
+        )
+    
+    return render(request, 'main/jazz.html', {
+        'products': products,
+        'search_query': search_query,
+        'genre': 'Джаз'
+    }
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'main/cart.html', {'cart': cart})
