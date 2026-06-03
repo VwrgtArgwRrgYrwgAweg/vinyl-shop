@@ -7,7 +7,7 @@ class Product(models.Model):
     year = models.IntegerField('Год выпуска', null=True, blank=True)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
     stock = models.IntegerField('Количество на складе', default=1)
-    image = models.CharField('Ссылка на фото', max_length=500, blank=True, null=True)
+    image = models.ImageField('Фото', upload_to='products/', blank=True, null=True)
     created_at = models.DateTimeField('Дата добавления', auto_now_add=True)
 
     def __str__(self):
