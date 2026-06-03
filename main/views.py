@@ -52,7 +52,7 @@ def jazz_products(request):
         'products': products,
         'search_query': search_query,
         'genre': 'Джаз'
-    }
+    })
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'main/cart.html', {'cart': cart})
