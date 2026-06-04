@@ -24,10 +24,17 @@
     .product-card:hover {
         transform: translateY(-10px);
     }
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
     .product-artist {
         font-size: 18px;
         font-weight: 600;
         color: #8b4513;
+        margin: 10px 0 5px;
     }
     .product-title {
         font-size: 16px;
@@ -117,20 +124,16 @@
 {% else %}
     <!-- Сетка с товарами -->
     <div class="products-grid">
-        {% for product in products %}
+    {% for product in products %}
         <div class="product-card">
-    {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">
-    {% else %}
-        <div class="product-image">🎵</div>
-    {% endif %}
-    <div class="product-artist">{{ product.artist }}</div>
-    <div class="product-title">{{ product.title }}</div>
-    <div class="product-year">{{ product.year }}</div>
-    <div class="product-price">{{ product.price }} ₽</div>
-    <a href="{% url 'cart_add' product.id %}" class="btn-buy">В корзину</a>
-</div>
-        {% endfor %}
+            <img src="{{ product.get_image_url }}" alt="{{ product.title }}">
+            <div class="product-artist">{{ product.artist }}</div>
+            <div class="product-title">{{ product.title }}</div>
+            <div class="product-year">{{ product.year }}</div>
+            <div class="product-price">{{ product.price }} ₽</div>
+            <a href="{% url 'cart_add' product.id %}" class="btn-buy">В корзину</a>
+        </div>
+    {% endfor %}
     </div>
 {% endif %}
 
