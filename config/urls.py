@@ -8,7 +8,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('pop/', views.pop_products, name='pop'),
+    path('pop/', views.pop_products, name='pop'),      # ← ДОБАВИТЬ ЭТУ СТРОКУ
     path('jazz/', views.jazz_products, name='jazz'), 
     path('users/', include('users.urls')),
     path('cart/', views.cart_detail, name='cart_detail'),
@@ -19,3 +19,12 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# ВРЕМЕННО: создаём суперпользователя при запуске
+from django.contrib.auth.models import User
+
+try:
+    User.objects.get(username='super')
+    print('Пользователь super уже существует')
+except User.DoesNotExist:
+    User.objects.create_superuser('super', '', 'super123')
+    print('Создан суперпользователь super с паролем super123')
