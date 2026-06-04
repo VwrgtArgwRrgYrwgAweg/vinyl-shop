@@ -19,20 +19,3 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# ВРЕМЕННО: создаём админа
-import os
-import sys
-
-if 'runserver' in sys.argv or 'gunicorn' in sys.argv[0]:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-    import django
-    django.setup()
-    from django.contrib.auth.models import User
-    
-    # Удаляем старого super если есть
-    User.objects.filter(username='super').delete()
-    
-    # Создаём нового админа
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
-        print('Создан админ: admin / admin123')
