@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from main.models import Order  # 👈 ДОБАВЬ ЭТУ СТРОКУ (импорт заказов)
 
 def register(request):
     if request.method == 'POST':
@@ -18,7 +19,9 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')  # 👈 ДОБАВЬ ЭТУ СТРОКУ
+    return render(request, 'users/profile.html', {'orders': orders})  # 👈 ИСПРАВЬ ЭТУ СТРОКУ (добавь orders)
+
 def custom_logout(request):
     from django.contrib.auth import logout
     logout(request)
